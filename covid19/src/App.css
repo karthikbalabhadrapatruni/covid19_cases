@@ -1,0 +1,47 @@
+.App {
+  text-align: center;
+}
+
+.App-header {
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.data {
+  margin-top : 100px;
+}
+
+.card {
+  max-width: 345px;
+  background-color: cornsilk !important;
+  box-shadow: 0px 0px 20px #bd758d !important;
+  border-radius: 20px !important;
+}
+
+hr {
+  width : 90%;
+}
+
+.Total-Cases {
+  background-color: #f93d2b !important;
+}
+
+.Active-Cases {
+  background-color: #f76bbf !important;
+}
+
+.Discharge {
+  background-color: #97f75b !important;
+}
+
+.Deaths {
+  background-color: #6baaf7 !important;
+}
+
+.count {
+      font-size: -webkit-xxx-large;
+}
