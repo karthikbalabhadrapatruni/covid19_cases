@@ -46,6 +46,7 @@ render() {
             <option value = 'Global'> Global </option>
             </select>
         </form>
+    
         <Country country = {this.state.value} />
 
       </div>

@@ -1,7 +1,8 @@
 import axios from 'axios'
 import React , {Component} from 'react';
-import Cards from './card.js'
+import Cards from './card'
 import Grid from '@material-ui/core/Grid';
+import Graph from './chart';
 
 class Country extends Component {
 
@@ -19,6 +20,7 @@ class Country extends Component {
       isLoaded : false,
       country : 'Global',
       date : 0,
+      slug : 'global'
     };
   }
 
@@ -35,6 +37,7 @@ class Country extends Component {
         newDischarged : res.data.Global.NewRecovered,
         newDeaths :res.data.Global.NewDeaths,
         date : res.data.Date,
+
     })
      const totalActive = this.state.totalCases- this.state.totalDischarged -this.state.totalDeaths;
      this.setState({
@@ -64,7 +67,8 @@ class Country extends Component {
             newDeaths :cntData[0].NewDeaths,
             date : cntData[0].Date,
             activeCases : cntData[0].TotalConfirmed - cntData[0].TotalRecovered -  cntData[0].TotalDeaths ,
-            country : cntData[0].country
+            country : cntData[0].country,
+            slug : cntData[0].Slug
             };
         } else {
           return {
@@ -76,7 +80,8 @@ class Country extends Component {
           newDeaths :0,
           date : 'Up To Date',
           activeCases : 0 ,
-          country :  props.country
+          country :  props.country,
+          slug :  props.country
          };
         }
       } else {
@@ -104,7 +109,7 @@ render() {
                 <Cards title = 'Total Deaths' classnme = 'Deaths' count = {this.state.totalDeaths} />
         </Grid>
         <br/><br/>
-        <label> {this.state.date} </label>
+        <label> {this.state.date.substring(0, 10)} </label>
         <br/><br/>
         <Grid
                 container
@@ -115,6 +120,17 @@ render() {
                 <Cards title = 'New Cases' classnme = 'Total-Cases' count = {this.state.newCases} />
                 <Cards title = 'New Recovered' classnme = 'Discharge' count = {this.state.newDischarged} />
                 <Cards title = 'New Deaths' classnme = 'Deaths' count = {this.state.newDeaths} />
+        </Grid>
+        <Graph title = 'Daily Cases' graph = 'line' cnt = {this.state.slug} />
+        <Graph title = 'Total Cases'  graph = 'bar' cnt = {this.state.slug}/>
+        <Grid
+                container
+                spacing={3}
+                direction="row"
+                justify="center"
+                alignItems="center" >
+
+
         </Grid>
       </div>
     )
